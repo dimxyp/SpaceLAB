@@ -1,8 +1,8 @@
 <?php
 class DBController {
-	private $host = "localhost";
+	private $host = "192.168.102.39";
 	private $user = "root";
-	private $password = "";
+	private $password = "Password1234";
 	private $database = "phppot_examples";
 	private $conn;
 	
