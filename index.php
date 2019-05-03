@@ -7,18 +7,18 @@ if(!empty($_POST["register-user"])) {
 		break;
 		}
 	}
-	/* Password Matching Validation */
+	/* Password Matching Validation 
 	if($_POST['password'] != $_POST['confirm_password']){ 
 	$error_message = 'Passwords should be same<br>'; 
 	}
 
-	/* Email Validation */
+	/* Email Validation 
 	if(!isset($error_message)) {
 		if (!filter_var($_POST["userEmail"], FILTER_VALIDATE_EMAIL)) {
 		$error_message = "Invalid Email Address";
 		}
 	}
-
+*/
 	/* Validation to check if gender is selected */
 	if(!isset($error_message)) {
 	if(!isset($_POST["gender"])) {
@@ -36,8 +36,8 @@ if(!empty($_POST["register-user"])) {
 	if(!isset($error_message)) {
 		require_once("dbcontroller.php");
 		$db_handle = new DBController();
-		$query = "INSERT INTO registered_users (user_name, first_name, last_name, password, email, gender) VALUES
-		('" . $_POST["userName"] . "', '" . $_POST["firstName"] . "', '" . $_POST["lastName"] . "', '" . md5($_POST["password"]) . "', '" . $_POST["userEmail"] . "', '" . $_POST["gender"] . "')";
+		$query = "INSERT INTO registered_users (user_name, first_name, last_name, gender) VALUES
+		('" . $_POST["userName"] . "', '" . $_POST["firstName"] . "', '" . $_POST["lastName"] . "', '" . $_POST["gender"] . "')";
 		$result = $db_handle->insertQuery($query);
 		if(!empty($result)) {
 			$error_message = "";
@@ -51,11 +51,19 @@ if(!empty($_POST["register-user"])) {
 ?>
 <html>
 <head>
-<title>PHP User Registration Form</title>
+<title>SpaceLab Registration Form</title>
+
+
 <style>
+.content {
+  max-width: 500px;
+  margin: auto;
+
+}
 body{
 	width:610px;
 	font-family:calibri;
+	
 }
 .error-message {
 	padding: 7px 10px;
@@ -63,6 +71,7 @@ body{
 	border: #ffd5da 1px solid;
 	color: #d6001c;
 	border-radius: 4px;
+
 }
 .success-message {
 	padding: 7px 10px;
@@ -103,6 +112,10 @@ body{
 </style>
 </head>
 <body>
+
+
+<div class="content">
+<img src="space.png">
 <form name="frmRegistration" method="post" action="">
 <table border="0" width="500" align="center" class="demo-table">
 <?php if(!empty($success_message)) { ?>	
@@ -123,18 +136,7 @@ body{
 <td>Last Name</td>
 <td><input type="text" class="demoInputBox" name="lastName" value="<?php if(isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></td>
 </tr>
-<tr>
-<td>Password</td>
-<td><input type="password" class="demoInputBox" name="password" value=""></td>
-</tr>
-<tr>
-<td>Confirm Password</td>
-<td><input type="password" class="demoInputBox" name="confirm_password" value=""></td>
-</tr>
-<tr>
-<td>Email</td>
-<td><input type="text" class="demoInputBox" name="userEmail" value="<?php if(isset($_POST['userEmail'])) echo $_POST['userEmail']; ?>"></td>
-</tr>
+
 <tr>
 <td>Gender</td>
 <td><input type="radio" name="gender" value="Male" <?php if(isset($_POST['gender']) && $_POST['gender']=="Male") { ?>checked<?php  } ?>> Male
@@ -147,4 +149,7 @@ body{
 </tr>
 </table>
 </form>
+</div>
+IP: 23.102.63.100 <br>
+Azure Location : North Europe
 </body></html>
