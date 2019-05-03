@@ -3,7 +3,7 @@ class DBController {
 	private $host = "192.168.102.39";
 	private $user = "root";
 	private $password = "Password1234";
-	private $database = "phppot_examples";
+	private $database = "spaceforum";
 	private $conn;
 	
 	function __construct() {
